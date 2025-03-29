@@ -106,58 +106,7 @@ Para *revertir* el commit, ve a la pestaña "Historial" en GitHub Desktop. Haz c
 
 ***Nota***: GitHub Desktop no tiene una opción correspondiente a `git reset`, pero si te sientes cómodo en la terminal y estás familiarizado con este comando, también puedes usar `git reset` para lograr una tarea similar, aunque con diferentes efectos en el historial de commits.
 
-### 11. Crear una branch o rama
 
-Cuando se quieren hacer distintas modificaciones pero no quieren arriesgar modificar su archivo general se puede hacer una branch, que solo es un commit aparte que puede ser ignorado o puede juntarse a nuestra branch principal en un futuro
-
-Vamos a crear una branch llamada funcionalidad-api, una vez creada nos aseguramos de estar en la branch nueva, si por algo no lo estamos la seleccionamos donde dice "current branch"
-
-Una vez en ella vamos al archivo app.js y agregamos el siguiente código.
-
-```JS
-const jokes = document.querySelector("#jokes");
-const button = document.querySelector("button");
-
-const addNewJoke = async () => {
-  const jokeText = await getDadJoke();
-  const newLI = document.createElement("LI");
-  newLI.append(jokeText);
-  jokes.append(newLI);
-};
-
-const getDadJoke = async () => {
-  try {
-    const res = await fetch("https://icanhazdadjoke.com/", {
-      headers: { Accept: "application/json" }
-    });
-    const data = await res.json();
-    return data.joke;
-  } catch (e) {
-    return "NO JOKES AVAILABLE! SORRY :(";
-  }
-};
-
-button.addEventListener("click", addNewJoke);
-``` 
-También cambia está línea
-
-> Soy \[tu nombre\] y cambié esto en una branch.
-
-Hacemos commit y push a los cambios
-
-### 12. Revisando la rama
-
-Podrán observar que si cambiamos a nuestra rama principal el cambio hecho no existe, pero en la nueva si se encuentra.
-
-### 13. Merge o unión de ramas
-
-Para traer nuestros cambios hechos en la branch a nuestro código principal vamos a cambiar a la branch main y presionar el botón "choose a branch to merge into main", seleccionamos nuestra nueva branch y le presionamos en "create a merge commit"
-
-Con eso los cambios ya se encontrarán en nuestra branch principal, revisen los cambios para asegurarse de que se realizó correctamente.
-
-Si la branch ya no se va a utilizar se puede eliminar, hay distintos flujos de trabajo en los que se hace una branch por cada arreglo o en ocasiones hacen branches por usuario o por versiones o por tipos de trabajo como dev, fixes, qa, todo depende de la forma de trabajar del equipo.
-
-### 14. Practicando un poco
 
 Agrega en main en su archivo html y crea un commit
 <link rel="stylesheet" href="style.css" />
